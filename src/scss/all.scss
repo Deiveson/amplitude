@@ -1,0 +1,19 @@
+@import "variables";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "bootstrap-utilities.min.css";
+@import "./fonts-scss/baloo-thambi-2";
+
+@import "reset";
+@import "global";
+
+@import "../Components/fields/fields";
+@import "../Components/buttons/buttons";
+@import "../Components/navbar/navbar";
+@import "../Components/popup/popup";
+
+@import "../Views/Home/home";
+@import "../Views/Login/login";

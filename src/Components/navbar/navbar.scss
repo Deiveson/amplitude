@@ -1,0 +1,13 @@
+.amp-navbar{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 10px 20px;
+  &__logo{
+    img{
+      height: 80px;
+    }
+  }
+}
