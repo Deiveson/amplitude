@@ -5,7 +5,7 @@ import { callback } from "./auth";
 
 import PrivateRoute from "./Components/private-route";
 
-import Home from "./Views/Home";
+import Search from "./Views/Search";
 import Login from "./Views/Login";
 import { Provider } from "react-redux";
 import { Store } from "./store/store";
@@ -16,7 +16,7 @@ function App() {
       <div className="App">
         <Router history={history}>
           <Switch>
-            <PrivateRoute path="/" component={Home} exact />
+            <PrivateRoute path="/" component={Search} exact />
             <Route path="/login" component={Login} exact />
             <Route path="/callback" component={() => callback()} />
           </Switch>

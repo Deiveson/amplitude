@@ -1,6 +1,8 @@
 import HttpStatus from "http-status";
+import history from "../../history";
 
-export const tokenName = "auth-token-spotify-api";
+export const tokenName = "auth-token-amplitude";
+export const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 
 class Warning extends Error {
   constructor(message, error, status = 0) {
@@ -117,10 +119,11 @@ export const reqPutJsonTokenAuth = token =>
       };
 
 export const treatingUnauthorized = resp => {
-  if (resp && resp.httpStatusCode === HttpStatus.UNAUTHORIZED) {
+  if (resp && resp.error && resp.error.status === HttpStatus.UNAUTHORIZED) {
     localStorage.removeItem(tokenName);
 
     console.log("Erro 403");
+    history.push("/login");
     throw new Warning(
       "Sua sessão expirou, para continuar faça novamente o login.",
       resp.message
@@ -231,7 +234,7 @@ export const catchError = (error, treatment, isErro) => {
   if (isErro) {
     if (error.message === "Failed to fetch")
       console.error("Opss", "Ocorreu um erro. Por favor, tente novamente.");
-    else if (error.name === "Warning") console.warning("Aviso", error.message);
+    else if (error.name === "Warning") console.warn("Aviso", error.message);
     else if (error.message) console.error("Opss", error.message);
     else console.error("Opss", "Ocorreu um erro. Por favor, tente novamente.");
   }

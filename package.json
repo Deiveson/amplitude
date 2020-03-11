@@ -1,5 +1,5 @@
 {
-  "name": "spotify-api",
+  "name": "amplitude",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "history": "^4.10.1",
     "http-status": "^1.4.2",
     "prop-types": "^15.7.2",
+    "query-string": "^6.11.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",

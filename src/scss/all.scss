@@ -4,7 +4,7 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
-@import "bootstrap-utilities.min.css";
+@import "utilities/bootstrap-utilities.min.css";
 @import "./fonts-scss/baloo-thambi-2";
 
 @import "reset";
@@ -14,6 +14,7 @@
 @import "../Components/buttons/buttons";
 @import "../Components/navbar/navbar";
 @import "../Components/popup/popup";
+@import "../Components/cards/cards";
 
-@import "../Views/Home/home";
+@import "../Views/Search/search";
 @import "../Views/Login/login";

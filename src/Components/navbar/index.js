@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import logo from "../../assets/img/logo-amp.svg";
 import InputSearch from "../fields/input-search";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as SearchActions from "../../Views/Search/searchActions";
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchValue: "" };
     this.interval = () => {};
   }
   search(val) {
-    this.setState({ searchValue: val });
-    clearTimeout(this.interval);
-    this.interval = setTimeout(() => console.log("executou", val), 1000);
+    if (val) {
+      this.props.setLoading(true);
+      clearTimeout(this.interval);
+      this.interval = setTimeout(() => this.props.searchAll({ q: val }), 1000);
+    }
   }
   render() {
     return (
@@ -27,3 +31,10 @@ export default class NavBar extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({ ...state.search });
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...SearchActions }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
