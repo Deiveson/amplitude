@@ -1,10 +1,13 @@
 .album-view{
+  display: flex;
+  flex-direction: row;
   position: relative;
   margin-top: 50px;
   &__header{
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-right: 50px;
     &__photo{
       position: relative;
       width: 150px;
@@ -29,6 +32,7 @@
     }
   }
   &__musics{
+    flex: 1;
     margin-top: 30px;
   }
 }
@@ -39,6 +43,7 @@
   align-items: center;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   padding-bottom: 15px;
+  margin-bottom: 25px;
   &__data{
     display: flex;
     flex-direction: row;

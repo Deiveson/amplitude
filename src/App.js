@@ -10,6 +10,7 @@ import Login from "./Views/Login";
 import { Provider } from "react-redux";
 import { Store } from "./store/store";
 import Album from "./Views/Album";
+import Artist from "./Views/Artist";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" component={Login} exact />
             <Route path="/callback" component={() => callback()} />
             <PrivateRoute path="/album/:id" component={Album} />
+            <PrivateRoute path="/artista/:id" component={Artist} />
           </Switch>
         </Router>
       </div>

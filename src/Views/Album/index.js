@@ -4,22 +4,23 @@ import * as SearchActions from "../Search/searchActions";
 import { connect } from "react-redux";
 import LoadingSpinner from "../../Components/loading-spinner";
 import MusicItem from "./music-item";
+import { renderArtists } from "../../Components/utils/fnUtils";
 
 class Album extends Component {
   componentDidMount() {
     this.props.getAlbum(this.props.match.params.id);
   }
 
-  renderArtists(artists) {
-    return artists.reduce((acc, item) => {
-      return `${item.name}${acc ? `, ${acc}` : ""}`;
-    }, "");
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.getAlbum(this.props.match.params.id);
+    }
   }
-
-  renderMusicList() {}
 
   render() {
     const { data = {} } = this.props;
+    const { tracks = {} } = data;
+    const { items = [] } = tracks;
     if (this.props.loadingData) {
       return (
         <div className="w-100 text-center">
@@ -39,12 +40,21 @@ class Album extends Component {
             <div className="album-view__header__data">
               <div className="album-view__header__data--name">{data.name}</div>
               <div className="album-view__header__data--artist">
-                {this.renderArtists(data.artists)}
+                {renderArtists(data.artists)}
               </div>
             </div>
           </div>
           <div className="album-view__musics">
-            <MusicItem />
+            {items.map((track, i) => {
+              return (
+                <MusicItem
+                  key={i}
+                  name={track.name}
+                  artists={track.artists}
+                  time={track.duration_ms}
+                />
+              );
+            })}
           </div>
         </section>
       );

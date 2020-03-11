@@ -4,8 +4,9 @@ import { bindActionCreators } from "redux";
 import * as SearchActions from "./searchActions";
 import { connect } from "react-redux";
 import ApresentationCard from "../../Components/cards/apresentation-card";
-import { msToMin } from "../../Components/utils/fnUtils";
+import { msToMin, renderArtists } from "../../Components/utils/fnUtils";
 import Rating from "../../Components/rating-stars";
+import Icon from "../../Components/icon";
 
 class Search extends Component {
   renderSection(name, itens, typeShow) {
@@ -27,22 +28,19 @@ class Search extends Component {
   }
 
   renderTrackCard(track) {
-    let artists = "";
     let image = "";
-    if (track.artists.length === 1) {
-      artists = track.artists[0].name;
-    } else {
-      artists = track.artists.reduce((acc, item) => {
-        return `${item.name}${acc ? `, ${acc}` : ""}`;
-      }, "");
-    }
     if (track.album && track.album.images) image = track.album.images[1].url;
     return (
       <ApresentationCard
         name={track.name}
-        info={() => <>Música - {artists}</>}
-        extraInfo={() => <>{msToMin(track.duration_ms)}</>}
+        info={() => <>Música - {renderArtists(track.artists)}</>}
+        extraInfo={() => (
+          <>
+            <Icon value="start" /> {msToMin(track.duration_ms)}
+          </>
+        )}
         image={image}
+        id={track.id}
       />
     );
   }
@@ -59,16 +57,14 @@ class Search extends Component {
           </>
         )}
         image={image}
+        id={artist.id}
+        type="artista"
       />
     );
   }
   renderAlbumCard(album) {
-    let artists = "";
     let image = "";
     let type = "";
-    artists = album.artists.reduce((acc, item) => {
-      return `${item.name}${acc ? `, ${acc}` : ""}`;
-    }, "");
     if (album.images) image = album.images[1].url;
     switch (album.album_type) {
       case "album":
@@ -85,10 +81,12 @@ class Search extends Component {
         name={album.name}
         info={() => (
           <>
-            {type} - {artists}
+            {type} - {renderArtists(album.artists)}
           </>
         )}
         image={image}
+        id={album.id}
+        type="album"
       />
     );
   }

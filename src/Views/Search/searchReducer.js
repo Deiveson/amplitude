@@ -35,6 +35,21 @@ export function searchReducer(state = INITIAL_STATE, action) {
         ...state,
         loadingData: action.value
       };
+    case SearchTypes.GET_ARTIST:
+      return {
+        ...state,
+        data: { ...state.data, ...action.artist }
+      };
+    case SearchTypes.GET_ARTIST_ALBUMS:
+      return {
+        ...state,
+        data: { ...state.data, albums: action.albums }
+      };
+    case SearchTypes.GET_TOP_TRACKS:
+      return {
+        ...state,
+        data: { ...state.data, topTracks: action.top }
+      };
     default:
       return state;
   }

@@ -38,6 +38,46 @@ export const getAlbum = (id, call = () => {}) => {
   };
 };
 
+export const getTopTracks = (id, call = () => {}) => {
+  return dispatch => {
+    dispatch(setLoadingData(true));
+    fetchSecurity(
+      `${SPOTIFY_API_URL}/artists/${id}/top-tracks?country=from_token`,
+      reqGetJsonToken(),
+      resp => {
+        call(resp);
+        return dispatch({ type: SearchTypes.GET_TOP_TRACKS, top: resp });
+      }
+    ).finally(() => dispatch(setLoadingData(false)));
+  };
+};
+export const getArtist = (id, call = () => {}) => {
+  return dispatch => {
+    dispatch(setLoadingData(true));
+    fetchSecurity(
+      `${SPOTIFY_API_URL}/artists/${id}`,
+      reqGetJsonToken(),
+      resp => {
+        call(resp);
+        return dispatch({ type: SearchTypes.GET_ARTIST, artist: resp });
+      }
+    ).finally(() => dispatch(setLoadingData(false)));
+  };
+};
+export const getArtistAlbuns = (id, call = () => {}) => {
+  return dispatch => {
+    dispatch(setLoadingData(true));
+    fetchSecurity(
+      `${SPOTIFY_API_URL}/artists/${id}/albums`,
+      reqGetJsonToken(),
+      resp => {
+        call(resp);
+        return dispatch({ type: SearchTypes.GET_ARTIST_ALBUMS, albums: resp });
+      }
+    ).finally(() => dispatch(setLoadingData(false)));
+  };
+};
+
 export const setLoadingData = value => {
   return dispatch => {
     dispatch({

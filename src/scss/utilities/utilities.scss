@@ -1,3 +1,9 @@
 .cursor-pointer{
   cursor: pointer;
 }
+.border-bottom-hover{
+  &:hover{
+    border-bottom: 1px solid white;
+  }
+
+}

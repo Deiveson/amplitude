@@ -12,8 +12,11 @@ class NavBar extends Component {
     this.interval = () => {};
   }
   search(val) {
-    if (val) {
+    if (!this.props.isLoading) {
       this.props.setLoading(true);
+      history.push("/");
+    }
+    if (val) {
       clearTimeout(this.interval);
       this.interval = setTimeout(() => this.props.searchAll({ q: val }), 1000);
     }

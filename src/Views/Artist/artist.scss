@@ -1,0 +1,79 @@
+.artist-view{
+  position: relative;
+  margin-top: 50px;
+  &__header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &__photo{
+      position: relative;
+      width: 150px;
+      height: 150px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border-radius: 150px;
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+    }
+    &__data{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      &--name{
+        font-size: 2rem;
+        font-weight: 600;
+      }
+      &--rating{
+        margin-top: 4px;
+        color: rgba(255,255,255,0.4)
+      }
+    }
+  }
+  &__top-tracks{
+    margin-top: 30px;
+    &__title{
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+  }
+  &__albums{
+    margin-top: 40px;
+    &__title{
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    &__itens{
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.album-item{
+  width: 200px;
+  margin-right: 40px;
+  &__photo{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+  }
+  &__data{
+    margin-top: 15px;
+    &__name{
+      display: block;
+      font-size: 1.2rem;
+    }
+    &__date{
+      margin-top: 5px;
+      color: rgba(255,255,255,0.5);
+    }
+  }
+}

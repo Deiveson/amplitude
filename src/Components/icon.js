@@ -8,6 +8,9 @@ const Icon = props => {
     case "solid":
       type = "fas";
       break;
+    case "regular":
+      type = "far";
+      break;
     case "brand":
       type = "fab";
       break;
