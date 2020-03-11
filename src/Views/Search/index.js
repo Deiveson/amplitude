@@ -8,13 +8,19 @@ import { msToMin } from "../../Components/utils/fnUtils";
 import Rating from "../../Components/rating-stars";
 
 class Search extends Component {
-  renderSection(name, itens) {
+  renderSection(name, itens, typeShow) {
     return (
       <section>
         <div className="section-title">{name}</div>
         <div className="section-itens">{itens}</div>
         <div className="section-show-all">
-          <span>MOSTRAR TUDO</span>
+          <span
+            onClick={() =>
+              this.props.searchAll(this.props.searchValue, typeShow, 50)
+            }
+          >
+            MOSTRAR TUDO
+          </span>
         </div>
       </section>
     );
@@ -60,16 +66,9 @@ class Search extends Component {
     let artists = "";
     let image = "";
     let type = "";
-    if (album.artists.length === 1) {
-      artists = album.artists[0].name;
-    } else {
-      artists = album.artists.reduce((acc, item, idx) => {
-        if (idx + 1 >= album.artists.length) {
-          return `${item.name}${acc ? `, ${acc}` : ""}`;
-        }
-        return `${item.name}${acc ? ` e ${acc}` : ""}`;
-      }, "");
-    }
+    artists = album.artists.reduce((acc, item) => {
+      return `${item.name}${acc ? `, ${acc}` : ""}`;
+    }, "");
     if (album.images) image = album.images[1].url;
     switch (album.album_type) {
       case "album":
@@ -102,17 +101,21 @@ class Search extends Component {
 
     if (tracks.items && tracks.items.length > 0) {
       searchedTracks = tracks.items.map(track => this.renderTrackCard(track));
-      searchedTracks = this.renderSection("Músicas", searchedTracks);
+      searchedTracks = this.renderSection("Músicas", searchedTracks, "track");
     }
     if (albums.items && albums.items.length > 0) {
       searchedAlbums = albums.items.map(album => this.renderAlbumCard(album));
-      searchedAlbums = this.renderSection("Álbuns", searchedAlbums);
+      searchedAlbums = this.renderSection("Álbuns", searchedAlbums, "album");
     }
     if (artists.items && artists.items.length > 0) {
       searchedArtists = artists.items.map(artist =>
         this.renderArtistCard(artist)
       );
-      searchedArtists = this.renderSection("Artistas", searchedArtists);
+      searchedArtists = this.renderSection(
+        "Artistas",
+        searchedArtists,
+        "artist"
+      );
     }
     return (
       <>

@@ -9,6 +9,7 @@ import Search from "./Views/Search";
 import Login from "./Views/Login";
 import { Provider } from "react-redux";
 import { Store } from "./store/store";
+import Album from "./Views/Album";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <PrivateRoute path="/" component={Search} exact />
             <Route path="/login" component={Login} exact />
             <Route path="/callback" component={() => callback()} />
+            <PrivateRoute path="/album/:id" component={Album} />
           </Switch>
         </Router>
       </div>

@@ -4,6 +4,7 @@ import InputSearch from "../fields/input-search";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as SearchActions from "../../Views/Search/searchActions";
+import history from "../../history";
 
 class NavBar extends Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class NavBar extends Component {
   render() {
     return (
       <header className="amp-navbar">
-        <picture className="amp-navbar__logo">
+        <picture
+          className="amp-navbar__logo cursor-pointer"
+          onClick={() => history.replace("/")}
+        >
           <img src={logo} alt="amplitude" />
         </picture>
         <div className="amp-navbar__search">

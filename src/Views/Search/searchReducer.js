@@ -3,7 +3,9 @@ import { SearchTypes } from "../../store/actionTypes";
 const INITIAL_STATE = {
   list: {},
   searchValue: "",
-  isLoading: false
+  isLoading: false,
+  data: {},
+  loadingData: false
 };
 
 export function searchReducer(state = INITIAL_STATE, action) {
@@ -13,16 +15,25 @@ export function searchReducer(state = INITIAL_STATE, action) {
         ...state,
         list: action.list
       };
+    case SearchTypes.SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.value
+      };
     case SearchTypes.SET_SEARCH_VALUE:
       return {
         ...state,
         searchValue: action.searchValue
       };
-    case SearchTypes.SET_LOADING:
+    case SearchTypes.GET_DATA:
       return {
         ...state,
-        isLoading: action.load.loadValue,
-        searchValue: action.load.searchValue
+        data: action.data
+      };
+    case SearchTypes.SET_LOADING_DATA:
+      return {
+        ...state,
+        loadingData: action.value
       };
     default:
       return state;
