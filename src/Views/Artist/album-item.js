@@ -1,9 +1,14 @@
 import React from "react";
+import history from "../../history";
 
 const AlbumItem = props => {
-  const { image = [{}], name = "", year = "" } = props;
+  const { image = [{}], name = "", year = "", id = "" } = props;
   return (
-    <div className="album-item">
+    <div
+      className="album-item cursor-pointer"
+      tabIndex={1}
+      onClick={() => history.push(`/album/${id}`)}
+    >
       <div
         className="album-item__photo"
         style={{

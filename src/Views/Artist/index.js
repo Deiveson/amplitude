@@ -71,6 +71,7 @@ class Artist extends Component {
                   image={album.images}
                   name={album.name}
                   year={album.release_date}
+                  id={album.id}
                 />
               ))}
             </div>
