@@ -10,7 +10,7 @@ export const searchAll = (search, type, call = () => {}) => {
   return dispatch => {
     fetchSecurity(
       `${SPOTIFY_API_URL}/search?${
-        type ? type : "type=album,track,artist&"
+        type ? type : "type=album,track,artist&limit=3&"
       }${queryString.stringify(search)}`,
       reqGetJsonToken(),
       resp => {

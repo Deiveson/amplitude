@@ -1,0 +1,22 @@
+/*---------- star rating ----------*/
+%flex-display {
+  display: flex;
+}
+.star-rating {
+  @extend %flex-display;
+  align-items: center;
+  font-size: 0.8em;
+}
+.back-stars {
+  @extend %flex-display;
+  color: white;
+  position: relative;
+}
+.front-stars {
+  @extend %flex-display;
+  color: #FFBC0B;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: all .5s
+}

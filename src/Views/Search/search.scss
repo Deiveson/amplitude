@@ -4,4 +4,19 @@
     font-size: 2rem;
     margin-bottom: 20px;
   }
+  .section-itens{
+    &.last-child{
+      border-bottom: none;
+    }
+  }
+  .section-show-all{
+    margin-bottom: 50px;
+
+    span{
+      cursor: pointer;
+      &:hover{
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+    }
+  }
 }
