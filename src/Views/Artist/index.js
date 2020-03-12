@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import * as SearchActions from "../Search/searchActions";
 import { connect } from "react-redux";
 import LoadingSpinner from "../../Components/loading-spinner";
-import MusicItem from "./music-item";
+import MusicItem from "../Album/music-item";
 
 import Rating from "../../Components/rating-stars";
 import AlbumItem from "./album-item";
@@ -55,10 +55,12 @@ class Artist extends Component {
             {tracks.slice(0, 5).map((track, i) => {
               return (
                 <MusicItem
-                  key={i}
+                  key={"track" + i}
+                  id={track.id}
                   name={track.name}
                   artists={track.artists}
                   time={track.duration_ms}
+                  starFn={id => this.props.saveMusic(id)}
                 />
               );
             })}
@@ -66,8 +68,9 @@ class Artist extends Component {
           <div className="artist-view__albums">
             <div className="artist-view__albums__title">Álbuns</div>
             <div className="artist-view__albums__itens">
-              {items.slice(0, 3).map(album => (
+              {items.slice(0, 3).map((album, i) => (
                 <AlbumItem
+                  key={"album" + i}
                   image={album.images}
                   name={album.name}
                   year={album.release_date}

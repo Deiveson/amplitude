@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import ApresentationCard from "../../Components/cards/apresentation-card";
 import { msToMin, renderArtists } from "../../Components/utils/fnUtils";
 import Rating from "../../Components/rating-stars";
-import Icon from "../../Components/icon";
 
 class Search extends Component {
   renderSection(name, itens, typeShow) {
@@ -34,13 +33,11 @@ class Search extends Component {
       <ApresentationCard
         name={track.name}
         info={() => <>Música - {renderArtists(track.artists)}</>}
-        extraInfo={() => (
-          <>
-            <Icon value="start" /> {msToMin(track.duration_ms)}
-          </>
-        )}
+        extraInfo={() => msToMin(track.duration_ms)}
         image={image}
         id={track.id}
+        star
+        startFn={id => this.props.saveMusic(id)}
       />
     );
   }

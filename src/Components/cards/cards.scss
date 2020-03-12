@@ -79,27 +79,33 @@ $avatar-offset: 52 + 16;
 }
 .apresentation-card{
   @include card-pattern;
-  &__photo {
-    @include photo;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-  &__data{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__container{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    &__name{
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+    &__photo {
+      @include photo;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
-    &__infos{
-      margin-bottom: 3px;
-      color: rgba(255,255,255,0.7);
-    }
-    &__time{
-      color: rgba(255,255,255,0.7);
+    &__data{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &__name{
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      &__infos{
+        margin-bottom: 3px;
+        color: rgba(255,255,255,0.7);
+      }
+      &__time{
+        color: rgba(255,255,255,0.7);
+      }
     }
   }
 }

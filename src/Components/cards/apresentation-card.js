@@ -1,6 +1,7 @@
 import React from "react";
 import noImage from "../../assets/img/no-image.png";
 import history from "../../history";
+import Icon from "../icon";
 
 const ApresentationCard = props => {
   const {
@@ -9,30 +10,41 @@ const ApresentationCard = props => {
     name = "",
     image = "",
     id = "",
-    type = ""
+    type = "",
+    star = false
   } = props;
   return (
     <div className="apresentation-card">
-      <picture
-        className={`apresentation-card__photo ${type ? "cursor-pointer" : ""}`}
-        style={{
-          backgroundImage: `url(${image ? image : noImage})`
-        }}
-        onClick={() => (type ? history.push(`/${type}/${id}`) : () => {})}
-      />
-      <div className="apresentation-card__data">
+      <div className="apresentation-card__container">
         <div
-          className={`apresentation-card__data__name ${
-            type ? "cursor-pointer bborder-bottom-hover" : ""
-          }`}
           tabIndex={1}
+          className={`apresentation-card__container__photo ${
+            type ? "cursor-pointer" : ""
+          }`}
+          style={{
+            backgroundImage: `url(${image ? image : noImage})`
+          }}
           onClick={() => (type ? history.push(`/${type}/${id}`) : () => {})}
-        >
-          {name}
+        />
+        <div className="apresentation-card__container__data">
+          <div
+            className={`apresentation-card__container__data__name ${
+              type ? "cursor-pointer bborder-bottom-hover" : ""
+            }`}
+            tabIndex={1}
+            onClick={() => (type ? history.push(`/${type}/${id}`) : () => {})}
+          >
+            {name}
+          </div>
+          <div className="apresentation-card__container__data__infos">
+            {info()}
+          </div>
+          <div className="apresentation-card__container__data__time">
+            {extraInfo()}
+          </div>
         </div>
-        <div className="apresentation-card__data__infos">{info()}</div>
-        <div className="apresentation-card__data__time">{extraInfo()}</div>
       </div>
+      {star ? <Icon value="star" className="cursor-pointer" onClick={() => props.startFn(id)} /> : ""}
     </div>
   );
 };

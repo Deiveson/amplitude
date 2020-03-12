@@ -48,10 +48,12 @@ class Album extends Component {
             {items.map((track, i) => {
               return (
                 <MusicItem
-                  key={i}
+                  key={"track" + i}
+                  id={track.id}
                   name={track.name}
                   artists={track.artists}
                   time={track.duration_ms}
+                  starFn={id => this.props.saveMusic(id)}
                 />
               );
             })}

@@ -6,7 +6,11 @@ const MusicItem = props => {
   return (
     <div className="music-item">
       <div className="music-item__data">
-        <Icon value="star" className="music-item__data__star" />
+        <Icon
+          value="star"
+          className="music-item__data__star cursor-pointer"
+          onClick={() => props.starFn(props.id)}
+        />
         <div>
           <div className="music-item__data__name">{props.name}</div>
           <div className="music-item__data__artists">

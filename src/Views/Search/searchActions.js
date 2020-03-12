@@ -2,9 +2,11 @@ import queryString from "query-string";
 import {
   fetchSecurity,
   reqGetJsonToken,
+  reqPutJsonToken,
   SPOTIFY_API_URL
 } from "../../Components/utils/restUtils";
 import { SearchTypes } from "../../store/actionTypes";
+import { toastr } from "react-redux-toastr";
 
 export const searchAll = (search, type, limit, call = () => {}) => {
   return dispatch => {
@@ -51,6 +53,7 @@ export const getTopTracks = (id, call = () => {}) => {
     ).finally(() => dispatch(setLoadingData(false)));
   };
 };
+
 export const getArtist = (id, call = () => {}) => {
   return dispatch => {
     dispatch(setLoadingData(true));
@@ -64,6 +67,7 @@ export const getArtist = (id, call = () => {}) => {
     ).finally(() => dispatch(setLoadingData(false)));
   };
 };
+
 export const getArtistAlbuns = (id, call = () => {}) => {
   return dispatch => {
     dispatch(setLoadingData(true));
@@ -75,6 +79,18 @@ export const getArtistAlbuns = (id, call = () => {}) => {
         return dispatch({ type: SearchTypes.GET_ARTIST_ALBUMS, albums: resp });
       }
     ).finally(() => dispatch(setLoadingData(false)));
+  };
+};
+
+export const saveMusic = (id, call = () => {}) => {
+  return dispatch => {
+    fetchSecurity(
+      `${SPOTIFY_API_URL}/me/tracks`,
+      { ...reqPutJsonToken(), body: JSON.stringify({ ids: [id] }) },
+      resp => {}
+    ).finally(() => {
+      toastr.success("Pronto!", "Música favoritada com sucesso");
+    });
   };
 };
 

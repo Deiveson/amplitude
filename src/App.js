@@ -11,11 +11,13 @@ import { Provider } from "react-redux";
 import { Store } from "./store/store";
 import Album from "./Views/Album";
 import Artist from "./Views/Artist";
+import Toastr from "./Components/toastr";
 
 function App() {
   return (
     <Provider store={Store}>
       <div className="App">
+        <Toastr />
         <Router history={history}>
           <Switch>
             <PrivateRoute path="/" component={Search} exact />

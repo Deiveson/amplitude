@@ -1,5 +1,6 @@
 import HttpStatus from "http-status";
 import history from "../../history";
+import { toastr } from "react-redux-toastr";
 
 export const tokenName = "auth-token-amplitude";
 export const SPOTIFY_API_URL = "https://api.spotify.com/v1";
@@ -91,14 +92,14 @@ export const reqPutJsonToken = () =>
     ? {
         method: "PUT",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem(tokenName)
         }
       }
     : {
         method: "PUT",
         headers: {
-          "Content-type": "application/json"
+          "Content-Type": "application/json"
         }
       };
 
@@ -233,10 +234,10 @@ export const catchError = (error, treatment, isErro) => {
 
   if (isErro) {
     if (error.message === "Failed to fetch")
-      console.error("Opss", "Ocorreu um erro. Por favor, tente novamente.");
-    else if (error.name === "Warning") console.warn("Aviso", error.message);
-    else if (error.message) console.error("Opss", error.message);
-    else console.error("Opss", "Ocorreu um erro. Por favor, tente novamente.");
+      toastr.error("Opss", "Ocorreu um erro. Por favor, tente novamente.");
+    else if (error.name === "Warning") toastr.warning("Aviso", error.message);
+    else if (error.message) toastr.error("Opss", error.message);
+    else toastr.error("Opss", "Ocorreu um erro. Por favor, tente novamente.");
   }
 };
 
